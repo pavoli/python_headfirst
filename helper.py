@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'p.olifer'
 
+import sys
+
 def print_lol(the_list, indent=False, level=0, fn = sys.stdout):
     for each_item in the_list:
         if isinstance(each_item, list):
