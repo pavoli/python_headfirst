@@ -3,7 +3,6 @@ __author__ = 'p.olifer'
 
 import pickle
 from athletelist import AthleteList
-from athletelist import Athlete
 
 
 def get_coach_data(filename):
@@ -11,7 +10,7 @@ def get_coach_data(filename):
         with open(filename) as f:
             data = f.readline()
         templ = data.strip().split(',')
-        return (Athlete(templ.pop(0), templ.pop(0), templ))
+        return (AthleteList(templ.pop(0), templ.pop(0), templ))
     except IOError as ioerr:
         print('File error: ' + str(ioerr))
         return (None)
@@ -37,14 +36,4 @@ def get_from_store():
             all_athletes = pickle.load(athf)
     except IOError as ioerr:
         print('File error (get_from_store): ' + str(ioerr))
-    return all_athletes
-
-#print(dir())
-
-the_files = ['sarah.txt', 'james.txt', 'julie.txt', 'mikey.txt']
-data = put_to_store(the_files)
-print(data)
-
-data_copy = get_from_store()
-for each_athlete in data_copy:
-    print(data_copy[each_athlete].name + ' ' + data_copy[each_athlete].dob)
+    return (all_athletes)
