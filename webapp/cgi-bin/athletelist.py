@@ -11,5 +11,15 @@ class AthleteList(list):
         self.dob = a_dob
         self.extend(a_times)
 
+
     def top3(self):
         return(sorted(set([helper.sanitize(t) for t in self]))[0:3])
+
+
+    @property
+    def as_dict(self):
+        return ({
+            'Name': self.name,
+            'DOB':  self.dob,
+            'Top3': self.top3()
+        })
