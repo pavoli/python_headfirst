@@ -56,7 +56,7 @@ def get_names_from_store():
 def get_namesID_from_store():
     connection = sqlite3.connect(db_name)
     cursor = connection.cursor()
-    results = cursor.execute('''select name, id from athelets''')
+    results = cursor.execute('''select name, id from athletes''')
     response = results.fetchall()
     connection.close()
     return (response)
@@ -69,11 +69,11 @@ def get_athlete_from_id(athlete_id):
     results = cursor.execute('''select name, dob from athletes where id=?''', (athlete_id,))
     (name, dob) = results.fetchone()
 
-    results = cursor.execute('''select value timing_data where athlete_id=?''', (athlete_id,))
+    results = cursor.execute('''select value from timing_data where athlete_id=?''', (athlete_id,))
     data = [row[0] for row in results.fetchall()]
     response = {
         'Name'  : name,
-        'DOD'   : dob,
+        'DOB'   : dob,
         'data'  : data,
         'top3'  : data[0:3]
     }
